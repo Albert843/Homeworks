@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void myBin(int number)
+{
+    if (number != 0) {
+        myBin(number / 2);
+        printf("%i", number % 2);
+    }
+}
+
+main()
+{
+    int num;
+    system("chcp 1251 > nul");      //русификатор
+
+    printf("Введите число в десятичном виде: ");
+    scanf("%d", &num);
+
+    printf("Число в двоичном представлении: ");
+    myBin(num);
+
+    return 0;
+}
