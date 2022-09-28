@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+//---------------- Задание 1 bubble sorting --------------------
+
+char** initArray(char** array, const int row, const int col) {
+    array = (char**) calloc(sizeof(char*), row);
+    for (int i = 0; i < row; ++i) {
+        *(array + i) = (char*) calloc(sizeof(char), col);
+    }
+    return array;
+}
+
+void fillArray(char** array, const int row, const int col) {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            *((*(array + i)) + j) = rand()%10;
+        }
+    }
+}
+
+void printArray(char** array, const int row, const int col) {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            printf("%4d", *((*(array + i)) + j));
+        }
+        printf("\n");
+    }
+}
+
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+void bubbleSort(char** array, const int row, const int col) {
+    for (int i = 0; i < row; ++i) {
+        for (int j = 0; j < col; ++j) {
+            if (array[i][j] > array[i][j + 1])
+            swap(&array[i][j], &array[i][j + 1]);
+        }
+    }
+}
+
+//------------------ Задание 2 Algorythm TPK --------------------
+
+double f(double x)             //функция f выполняет математическую операцию
+    {
+        return (sqrt(fabs(x)) + 5.0 * pow(x, 3.0));
+    }
+
+ //================================================================
+
+int main(const int argc, const char** argv) {
+
+//---------------- Задание 1 bubble sorting -----------------------
+
+    const int row = 3;
+    const int col = 3;
+    char** arr = initArray(arr, row, col);
+
+    printf("Bubble sorting:\n\n");
+
+    fillArray(arr, row, col);
+    printf("before sorting:\n");
+    printArray(arr, row, col);
+
+    printf("after sorting:\n");
+    bubbleSort(arr, row, col);
+    printArray(arr, row, col);
+
+//------------------ Задание 2 Algorythm TPK ----------------------
+
+    double y;
+    int i;
+    double myArr[11] = {2.9, 2.3, 15.9, 107.0, 5.0, 3.0, 2.9, 4.0, 16.7, 26.2, 4.1};
+    printf ("\nAlgorythm TPK:\n\n");
+    for (i = 10; i >= 0; i--)     //инвертируем массив arr
+    {
+        y = f(myArr[i]);            //выполнение функции f
+        if (y > 400)
+        {
+            printf ("%d too large ", i);
+        }
+        else
+        {
+            printf ("%d %f ", i, y);
+        }printf ("\n");
+    }
+    return 0;
+}
